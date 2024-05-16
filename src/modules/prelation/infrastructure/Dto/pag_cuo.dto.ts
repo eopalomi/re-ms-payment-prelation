@@ -1,0 +1,27 @@
+export type CreditPaymentDTO = {
+  cod_cre: string;
+  num_cuo: number;
+  lug_rec: string;
+  fec_pag: string;
+  hor_pag: string;
+  fec_doc: string;
+  pago: number;
+  pag_cap: number;
+  pag_int: number;
+  pag_seg: number;
+  pag_seg_desgra: number;
+  pag_mor: number;
+  pag_itf: number;
+  enc_cap: number;
+  enc_int: number;
+  enc_mor: number;
+  enc_seg: number;
+  enc_seg_desgra: number;
+  fec_reg: string;
+  hor_reg: string;
+  usu_reg: string;
+  fec_reg_pag: string;
+  tip_pagcuo: string;
+  id_pagcre: number;
+  fe_propre: string;
+};
