@@ -30,6 +30,7 @@ services:
       - BD_CORE_DATABASE=${BD_CORE_DATABASE}
       - BD_CORE_USERNAME=${BD_CORE_USERNAME}
       - BD_CORE_PASSWORD=${BD_CORE_PASSWORD}
+      - ENVIRONMENT={ENVIRONMENT}
       
 networks:
   swarm-dev:
