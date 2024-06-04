@@ -17,7 +17,7 @@ FROM node:21-alpine3.17 AS runner
 # Set working directory
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock .env .env.development .env.production ./
+COPY package.json yarn.lock .env.development .env.production ./
 
 RUN yarn install --prod
 COPY --from=builder /app/dist ./dist
