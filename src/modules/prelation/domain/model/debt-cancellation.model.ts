@@ -1,6 +1,6 @@
 import { Payments } from './payment.model';
 
-export class DebtRelief extends Payments {
+export class DebtCancellation extends Payments {
   public readonly authorizationPersonCode: string | null;
   public readonly requestingPersonCode: string | null;
   public readonly idDocumentWF: number | null;
@@ -26,7 +26,7 @@ export class DebtRelief extends Payments {
     requestingPersonCode: string | null;
     registeringPersonCode: string;
     idDocumentWF: number | null;
-    idPayment: number | null;
+    idPayment: string | null;
   }) {
     super({
       creditCode: constructor.creditCode,
@@ -44,7 +44,7 @@ export class DebtRelief extends Payments {
       paymentHour: constructor.paymentHour,
       paymentValueDate: constructor.paymentValueDate,
       registeringPersonCode: constructor.registeringPersonCode,
-      _idPayment: constructor.idPayment,
+      idPayment: constructor.idPayment,
     });
 
     this.authorizationPersonCode = constructor.authorizationPersonCode;

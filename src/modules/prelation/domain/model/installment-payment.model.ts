@@ -10,17 +10,14 @@ export class InstallmentPayment extends Payments {
     lateFeeAmount: number;
     vehicleInsurance: number;
     lifeInsurance: number;
-    preventionInsurance: number;
     collectionLocationCode: string;
     paymentType: string | null;
     banckAccountCode: string | null;
     paymentDate: string;
     paymentHour: string;
     paymentValueDate: string;
-    authorizationPersonCode: string | null;
-    requestingPersonCode: string | null;
     registeringPersonCode: string;
-    idPayment: number | null;
+    idPayment: string | null;
   }) {
     super({
       creditCode: constructor.creditCode,
@@ -38,7 +35,7 @@ export class InstallmentPayment extends Payments {
       paymentHour: constructor.paymentHour,
       paymentValueDate: constructor.paymentValueDate,
       registeringPersonCode: constructor.registeringPersonCode,
-      _idPayment: constructor.idPayment,
+      idPayment: constructor.idPayment,
     });
   }
 }

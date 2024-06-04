@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { PrelationModule } from './modules/prelation/prelation.module';
 
 @Module({
-  imports: [],
+  imports: [PrelationModule],
   controllers: [],
   providers: [],
 })
