@@ -5,8 +5,8 @@
 Microservicio para manejar la prelación de los pagos.
 Cumple con los siguientes acuerdos de programación:
 
-- [x] Alias @src/
-- [x] Eslint y Prettier en precommit con husky
+- [ ] Alias @src/
+- [ ] Eslint y Prettier en precommit con husky
 - [ ] Manejo de variables de entorno con @nestjs/config
 - [ ] Manejo de BD relacionales con typeorm
 - [ ] Manejo de solicitudes http con axios
