@@ -11,18 +11,20 @@ export class SimulateInstallmentPaymentUseCase {
     const simulatePayment: InstallmentPayment[] = [];
 
     const paymentPromises = payment.map(async (_payment) => {
-      const paymentSchedule = await this.scheduleServices.findPaymentSchedule();
+      const paymentSchedule = await this.scheduleServices.findPaymentSchedule(
+        _payment.creditCode,
+      );
 
       if (!paymentSchedule) return;
 
       paymentSchedule
         .filter(
           (installment) =>
-            installment.principalBalance +
-              installment.interestBalance +
-              installment.feesbalance +
-              installment.vehicleInsuranceBalance +
-              installment.lifeInsuranceBalance >
+            +installment.principalBalance +
+              +installment.interestBalance +
+              +installment.feesbalance +
+              +installment.concept01Balance +
+              +installment.concept02Balance >
             0.0,
         )
         .reduce((amountBalance, installment) => {
@@ -30,15 +32,15 @@ export class SimulateInstallmentPaymentUseCase {
             principalAmount: 0.0,
             interestAmount: 0.0,
             lateFeeAmount: 0.0,
-            vehicleInsurance: 0.0,
-            lifeInsurance: 0.0,
+            concept01Amount: 0.0,
+            concept02Amount: 0.0,
           };
 
           const updateAmountBalance = (
             installmentBalance: number,
             paymentType: keyof typeof installmentPayments,
           ) => {
-            if (amountBalance > installmentBalance) {
+            if (amountBalance > +installmentBalance) {
               amountBalance -= +installmentBalance.toFixed(2);
               installmentPayments[paymentType] = +installmentBalance.toFixed(2);
               installmentBalance = 0.0;
@@ -51,18 +53,18 @@ export class SimulateInstallmentPaymentUseCase {
 
           if (amountBalance > 0) {
             updateAmountBalance(
-              installment.principalBalance,
+              +installment.principalBalance,
               'principalAmount',
             );
-            updateAmountBalance(installment.interestBalance, 'interestAmount');
-            updateAmountBalance(installment.feesbalance, 'lateFeeAmount');
+            updateAmountBalance(+installment.interestBalance, 'interestAmount');
+            updateAmountBalance(+installment.feesbalance, 'lateFeeAmount');
             updateAmountBalance(
-              installment.vehicleInsuranceBalance,
-              'vehicleInsurance',
+              +installment.concept01Balance,
+              'concept01Amount',
             );
             updateAmountBalance(
-              installment.lifeInsuranceBalance,
-              'lifeInsurance',
+              +installment.concept02Balance,
+              'concept02Amount',
             );
 
             simulatePayment.push(
@@ -84,7 +86,7 @@ export class SimulateInstallmentPaymentUseCase {
           }
 
           return amountBalance;
-        }, +_payment.amount.toFixed(2));
+        }, +_payment.amount);
     });
 
     await Promise.all(paymentPromises);

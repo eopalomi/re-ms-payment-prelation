@@ -5,8 +5,8 @@ export abstract class Payments {
   public readonly principalAmount: number;
   public readonly interestAmount: number;
   public readonly lateFeeAmount: number;
-  public readonly vehicleInsurance: number;
-  public readonly lifeInsurance: number;
+  public readonly concept01Amount: number;
+  public readonly concept02Amount: number;
   public readonly collectionLocationCode: string;
   public readonly paymentType: string | null;
   public readonly bankAccountCode: string | null;
@@ -23,8 +23,8 @@ export abstract class Payments {
     principalAmount: number;
     interestAmount: number;
     lateFeeAmount: number;
-    vehicleInsurance: number;
-    lifeInsurance: number;
+    concept01Amount: number;
+    concept02Amount: number;
     collectionLocationCode: string;
     paymentType: string | null;
     banckAccountCode: string | null;
@@ -40,8 +40,8 @@ export abstract class Payments {
     this.principalAmount = constructor.principalAmount;
     this.interestAmount = constructor.interestAmount;
     this.lateFeeAmount = constructor.lateFeeAmount;
-    this.vehicleInsurance = constructor.vehicleInsurance;
-    this.lifeInsurance = constructor.lifeInsurance;
+    this.concept01Amount = constructor.concept01Amount;
+    this.concept02Amount = constructor.concept02Amount;
     this.collectionLocationCode = constructor.collectionLocationCode;
     this.paymentType = constructor.paymentType;
     this.bankAccountCode = constructor.banckAccountCode;

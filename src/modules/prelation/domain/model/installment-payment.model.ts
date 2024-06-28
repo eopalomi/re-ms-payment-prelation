@@ -8,8 +8,8 @@ export class InstallmentPayment extends Payments {
     principalAmount: number;
     interestAmount: number;
     lateFeeAmount: number;
-    vehicleInsurance: number;
-    lifeInsurance: number;
+    concept01Amount: number;
+    concept02Amount: number;
     collectionLocationCode: string;
     paymentType: string | null;
     banckAccountCode: string | null;
@@ -26,8 +26,8 @@ export class InstallmentPayment extends Payments {
       principalAmount: constructor.principalAmount,
       interestAmount: constructor.interestAmount,
       lateFeeAmount: constructor.lateFeeAmount,
-      vehicleInsurance: constructor.vehicleInsurance,
-      lifeInsurance: constructor.lifeInsurance,
+      concept01Amount: constructor.concept01Amount,
+      concept02Amount: constructor.concept02Amount,
       collectionLocationCode: constructor.collectionLocationCode,
       paymentType: constructor.paymentType,
       banckAccountCode: constructor.banckAccountCode,
