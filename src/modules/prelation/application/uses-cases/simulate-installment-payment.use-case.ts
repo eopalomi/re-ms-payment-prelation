@@ -9,11 +9,20 @@ export class SimulateInstallmentPaymentUseCase {
 
   execute = async (payment: PaymentDto[]) => {
     const simulatePayment: InstallmentPayment[] = [];
+    const schedules = {};
 
+    for (const item of payment) {
+      if (!(item.creditCode in schedules)) {
+        const paymentSchedule = await this.scheduleServices.findPaymentSchedule(
+          item.creditCode,
+        );
+        schedules[item.creditCode] = paymentSchedule;
+      }
+    }
+
+    console.log('schedules', schedules);
     const paymentPromises = payment.map(async (_payment) => {
-      const paymentSchedule = await this.scheduleServices.findPaymentSchedule(
-        _payment.creditCode,
-      );
+      const paymentSchedule = schedules[_payment.creditCode];
 
       if (!paymentSchedule) return;
 
@@ -83,6 +92,19 @@ export class SimulateInstallmentPaymentUseCase {
                 idPayment: 'das453r',
               }),
             );
+
+            const findNumberPayment = paymentSchedule.find(
+              (item) => item.numberPayment === installment.numberPayment,
+            );
+            console.log('findNumberPayment:', findNumberPayment);
+            findNumberPayment.principalBalance -=
+              installmentPayments.principalAmount;
+            findNumberPayment.interestBalance -=
+              installmentPayments.interestAmount;
+            findNumberPayment.concept01Balance -=
+              installmentPayments.concept01Amount;
+            findNumberPayment.concept02Balance -=
+              installmentPayments.concept02Amount;
           }
 
           return amountBalance;

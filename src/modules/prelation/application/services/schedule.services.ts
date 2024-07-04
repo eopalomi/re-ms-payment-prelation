@@ -31,21 +31,21 @@ export class ScheduleServices {
       'http://swarm.dev.credimovil.pe:3012/schedule/' + creditId,
     );
     // console.log('creditSchedule:', creditSchedule.data);
-
+    creditSchedule.data.sort((a, b) => a.nuCuotas - b.nuCuotas);
     const schedule: PaymentSchedule[] = creditSchedule.data.map((item) => {
       return {
         creditCode: creditCode,
         numberPayment: item.nuCuotas,
         paymentDate: item.feFincuo,
-        principal: item.imCapcuo,
-        interest: item.imIntcap,
-        amountConcept01: item.imConcep01,
-        amountConcept02: item.imConcep02,
-        principalBalance: item.imSalcap,
-        interestBalance: item.imSalint,
+        principal: +item.imCapcuo,
+        interest: +item.imIntcap,
+        amountConcept01: +item.imConcep01,
+        amountConcept02: +item.imConcep02,
+        principalBalance: +item.imSalcap,
+        interestBalance: +item.imSalint,
         feesbalance: 0.0,
-        concept01Balance: item.imSalcon01,
-        concept02Balance: item.imSalcon02,
+        concept01Balance: +item.imSalcon01,
+        concept02Balance: +item.imSalcon02,
       };
     });
 
