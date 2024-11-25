@@ -22,10 +22,10 @@ export class ScheduleServices {
 
   findPaymentSchedule = async (creditCode: string) => {
     const creditInfo = await axios.get(
-      'https://apikong.dev.credimovil.pe/cl-ms-management/credit/detail-credit?contractCode=' +
+      'https://apikong.dev.credimovil.pe/cr-ms-management/v1/credit/info-credit?contractCode=' +
         creditCode,
     );
-    const creditId: number = creditInfo.data.productDetail[0].creditCode;
+    const creditId: number = creditInfo.data.data[0].creditCode;
 
     const creditSchedule = await axios.get(
       'http://swarm.dev.credimovil.pe:3012/schedule/' + creditId,
