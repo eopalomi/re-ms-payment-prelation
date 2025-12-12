@@ -20,11 +20,10 @@ export class InstallmentPaymentfAdapter
       (installment) => installment.numberPayment === payment.numberPayment,
     );
 
-    const dateTime = {
-      currentDate: () => formatedDate(new Date(), 'yyyy-mm-dd'),
-      currentHour: () => formatedDate(new Date(), 'hh:mm:ss AM|PM'),
-      now: () => formatedDate(new Date(), 'YYYY-MM-DD_hhmmss'),
-    };
+    const now = new Date();
+    const currentDateTime = formatedDate(now, 'YYYY-MM-DD_hhmmss');
+    const currentDate = formatedDate(now, 'yyyy-mm-dd');
+    const currentHour = formatedDate(now, 'hh:mm:ss AM|PM');
 
     const creditPayment: CreditPaymentDTO = {
       cod_cre: payment.creditCode,
@@ -45,13 +44,13 @@ export class InstallmentPaymentfAdapter
       enc_mor: installment.feesbalance,
       enc_seg: installment.vehicleInsuranceBalance,
       enc_seg_desgra: installment.lifeInsuranceBalance,
-      fec_reg: dateTime.now(),
-      hor_reg: dateTime.currentHour(),
+      fec_reg: currentDateTime,
+      hor_reg: currentHour,
       usu_reg: payment.registeringPersonCode,
-      fec_reg_pag: dateTime.now(),
+      fec_reg_pag: currentDateTime,
       tip_pagcuo: payment.paymentType,
       id_pagcre: payment.idPayment,
-      fe_propre: dateTime.currentDate(),
+      fe_propre: currentDate,
     };
 
     const fieldsForUpdate = {
@@ -60,7 +59,7 @@ export class InstallmentPaymentfAdapter
       sal_mor: installment.feesbalance - payment.lateFeeAmount,
       sal_seg: installment.vehicleInsuranceBalance - payment.vehicleInsurance,
       sal_seg_desgra: installment.lifeInsuranceBalance - payment.lifeInsurance,
-      fec_can: dateTime.currentDate(),
+      fec_can: currentDate,
     };
 
     try {

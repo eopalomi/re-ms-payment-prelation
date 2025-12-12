@@ -9,11 +9,13 @@ export type PaymentSchedule = {
     interest: number;
     vehicleInsurance: number;
     lifeInsurance: number;
+    igvInsurance?: number;
     principalBalance: number;
     interestBalance: number;
     feesbalance: number;
     vehicleInsuranceBalance: number;
     lifeInsuranceBalance: number;
+    preventionInsuranceBalance: number;
   }>;
 };
 
